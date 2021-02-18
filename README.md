@@ -10,7 +10,9 @@ and the configuration file `chado_search/file/carrotomics.conf`
 It is a work-in-progress, and not ready for general use.
 
 One enhancement of searches is support for infraspecific nomenclature, for example
-![Germplasm Search by Name example image](/docs/germplasm-search-example.png?raw=true "Germplasm Search by Name page")
+![Germplasm Search by Name example image](/docs/germplasm-search-by-name-example.png?raw=true "Example of Germplasm Search by Name page")
 
 Image search allows filtering by year.
+![Germplasm Search by Image example image](/docs/germplasm-search-by-image-example.png?raw=true "Example of Germplasm Search by Image page")
+
 
