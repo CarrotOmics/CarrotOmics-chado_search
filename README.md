@@ -6,7 +6,7 @@ This is the customization of the chado_search module used on the CarrotOmics.org
 This repository does not contain the entire module, only the customized files
 located in `chado_search/includes/search/carrotomics/`
 and in `chado_search/includes/mview/carrotomics/`
-and the configuration file `chado_search/file/carrotomics.conf`
+and the configuration file `chado_search/file/carrotomics.settings.txt`
 
 It is a work-in-progress, and not ready for general use.
 
