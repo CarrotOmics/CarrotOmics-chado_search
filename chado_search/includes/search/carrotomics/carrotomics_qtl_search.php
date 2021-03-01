@@ -42,7 +42,7 @@ function chado_search_qtl_search_form ($form) {
   $form->addMarkup(
       Set::markup()
       ->id('trait_name_example')
-      ->text('(e.g. chilling requirement, fruit weight)')
+      ->text('(e.g. Carotene content, resistance, shoot height)')
       ->newLine()
   );
   $form->addTextFilter(
@@ -59,7 +59,7 @@ function chado_search_qtl_search_form ($form) {
   $form->addMarkup(
       Set::markup()
       ->id('published_symbol_example')
-      ->text('(e.g. MFW1)')
+      ->text('(not used)')
       ->newLine()
   );
   $form->addTextFilter(
@@ -76,7 +76,7 @@ function chado_search_qtl_search_form ($form) {
   $form->addMarkup(
       Set::markup()
       ->id('qtl_label_example')
-      ->text('(e.g. qFWT.CNJ02-1.LG6)')
+      ->text('(e.g. REST, VERN)')
       ->newLine()
   );
   $form->addSubmit();
