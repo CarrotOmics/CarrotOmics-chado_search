@@ -70,6 +70,9 @@ function chado_search_create_gene_search_mview() {
       'type' => 'varchar',
       'length' => '255',
     ),
+    'analysis_id' => array (
+      'type' => 'int',
+    ),
     'blast_value' => array (
       'type' => 'text',
     ),
@@ -114,6 +117,7 @@ LOC.srcfeature_id,
       fmax,
       LOC.name || ':' || (fmin + 1) || '..' || fmax AS location,
 A.name AS analysis,
+A.analysis_id,
 -- Blast Best Hit
 (SELECT string_agg(distinct
    (SELECT array_to_string(regexp_matches(value, '<Hit_def>(.+?)</Hit_def>'), '')
