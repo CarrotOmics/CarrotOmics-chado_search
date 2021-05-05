@@ -47,6 +47,15 @@ path=search/nearby_markers
 file=includes/search/carrotomics/carrotomics_nearby_markers.php
 enabled=1
 
+[Project, Analysis, and Assay Search]
+id=paa_search
+path=search/paa
+file=includes/search/carrotomics/carrotomics_paa_search.php
+mview_name=chado_search_paa_search
+mview_file=includes/mview/carrotomics/carrotomics_paa_search.mview.php
+mview_callback=chado_search_create_paa_search_mview
+enabled=1
+
 [QTL Search]
 id=qtl_search
 path=search/qtl
