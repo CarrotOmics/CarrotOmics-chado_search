@@ -11,7 +11,7 @@ function chado_search_species_form ($form) {
   $form->addSelectFilter(
       Set::selectFilter()
       ->id('family')
-      ->title('Familiy')
+      ->title('Family')
       ->column('family')
       ->table('chado_search_species')
   );
