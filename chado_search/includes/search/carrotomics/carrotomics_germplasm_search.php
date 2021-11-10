@@ -11,7 +11,12 @@ function chado_search_germplasm_search_form ($form) {
   $form->addTabs(
       Set::tab()
       ->id('germplasm_search_tabs')
-      ->items(array('/search/germplasm' => 'Name', '/search/germplasm/collection' => 'Collection', '/search/germplasm/pedigree' => 'Pedigree', '/search/germplasm/country' => 'Country', '/search/germplasm/image' => 'Image'))
+      ->items(['/search/germplasm' => 'Name',
+               '/search/germplasm/collection' => 'Collection',
+               '/search/germplasm/pedigree' => 'Pedigree',
+               '/search/germplasm/country' => 'Country', 
+               '/search/germplasm/geolocation' => 'Geolocation', 
+               '/search/germplasm/image' => 'Image'])
   );
   $form->addTextFilter(
       Set::textFilter()
@@ -80,7 +85,7 @@ function chado_search_germplasm_search_form ($form) {
       ->id('germplasm_search')
       ->startWidget('stock_uniquename')
       ->endWidget('reset')
-      ->description("Search germplasm by name or alias. Wild card (*) can be used to match any word.")
+      ->description("Search germplasm by name or alias, or by taxonomy. Wild card (*) can be used to match any word.")
   );
   return $form;
 }

@@ -11,7 +11,12 @@ function chado_search_germplasm_search_by_pedigree_form ($form) {
   $form->addTabs(
   Set::tab()
       ->id('germplasm_search_tabs')
-      ->items(array('/search/germplasm' => 'Name', '/search/germplasm/collection' => 'Collection', '/search/germplasm/pedigree' => 'Pedigree', '/search/germplasm/country' => 'Country', '/search/germplasm/image' => 'Image'))
+      ->items(['/search/germplasm' => 'Name',
+               '/search/germplasm/collection' => 'Collection',
+               '/search/germplasm/pedigree' => 'Pedigree',
+               '/search/germplasm/country' => 'Country', 
+               '/search/germplasm/geolocation' => 'Geolocation', 
+               '/search/germplasm/image' => 'Image'])
   );
   $form->addTextFilter(
       Set::textFilter()
