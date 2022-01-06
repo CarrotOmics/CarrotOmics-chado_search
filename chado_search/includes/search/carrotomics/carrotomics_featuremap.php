@@ -57,8 +57,9 @@ function chado_search_featuremap_form_submit ($form, &$form_state) {
 function chado_search_featuremap_table_definition () {
   $headers = array(
       'featuremap:s:chado_search_link_featuremap:featuremap_id' => 'Map Name',
-      'maternal_stock_uniquename:s:chado_search_link_stock:maternal_stock_id' => 'Maternal Parent',
-      'paternal_stock_uniquename:s:chado_search_link_stock:paternal_stock_id' => 'Paternal Parent',
+      'pop_stock_uniquename:s:chado_search_link_stock:pop_stock_id' => 'Population',
+//    'maternal_stock_uniquename:s:chado_search_link_stock:maternal_stock_id' => 'Maternal Parent',
+//    'paternal_stock_uniquename:s:chado_search_link_stock:paternal_stock_id' => 'Paternal Parent',
       'pop_size:s' => 'Pop Size',
       'pop_type:s' => 'Pop Type',
       'organism:s:chado_search_link_organism:organism_id' => 'Species',
