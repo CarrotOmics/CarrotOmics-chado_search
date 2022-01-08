@@ -122,6 +122,15 @@ mview_file=includes/mview/carrotomics/carrotomics_germplasm_search.mview.php
 mview_callback=chado_search_create_germplasm_search_mview
 enabled=1
 
+[Germplasm Search by Geolocation]
+id=germplasm_search_by_geolocation
+path=search/germplasm/geolocation
+file=includes/search/carrotomics/carrotomics_germplasm_search_by_geolocation.php
+mview_name=chado_search_germplasm_search_by_country
+mview_file=includes/mview/carrotomics/carrotomics_germplasm_search_by_geolocation.mview.php
+mview_callback=chado_search_create_germplasm_search_by_geolocation_mview
+enabled=1
+
 [Germplasm Search by Image]
 id=germplasm_search_by_image
 path=search/germplasm/image
@@ -149,5 +158,14 @@ mview_name=chado_search_quantitative_traits
 mview_file=includes/mview/carrotomics/carrotomics_quantitative_traits.mview.php
 mview_callback=chado_search_create_quantitative_traits_mview
 summary_title=Quantitative Trait Summary
+enabled=1
+
+[Primer Search]
+id=primer_search
+path=search/primer
+file=includes/search/carrotomics/carrotomics_primer_search.php
+//mview_name=chado_search_primer
+//mview_file=includes/mview/carrotomics/carrotomics_primer.mview.php
+//mview_callback=chado_search_create_primer_mview
 enabled=1
 
