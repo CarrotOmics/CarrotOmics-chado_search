@@ -61,7 +61,10 @@ function chado_search_jbrowse_link ($location) {
             // because the urlprefix from the db table is already encoded when Tripal
             // JBrowse created it, we need to unencode it first, and add the leading /
             // to make url not a relative url, and /data suffix as Tripal JBrowse uses
-            $jbrowseurl = '/' . urldecode($obj->urlprefix) . '/data&loc=' . $urlsuffix . '&highlight=' . $location;
+            $jbrowseurl = urldecode($obj->urlprefix) . '/data&loc=' . $urlsuffix . '&highlight=' . $location;
+            if (!preg_match("/^\//", $jbrowseurl)) {
+              $jbrowseurl = '/' . $jbrowseurl;
+            }
 
             // store in local cache and then return the url
             $jbrowselookup[$location] = $jbrowseurl;
