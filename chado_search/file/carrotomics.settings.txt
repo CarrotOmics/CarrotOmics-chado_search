@@ -169,3 +169,12 @@ file=includes/search/carrotomics/carrotomics_primer_search.php
 //mview_callback=chado_search_create_primer_mview
 enabled=1
 
+[File Search]
+id=file_search
+path=search/file
+file=includes/search/carrotomics/carrotomics_file_search.php
+mview_name=chado_search_file_search
+mview_file=includes/mview/carrotomics/carrotomics_file_search.mview.php
+mview_callback=chado_search_create_file_search_mview
+enabled=1
+
