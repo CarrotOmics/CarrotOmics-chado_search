@@ -49,7 +49,7 @@ function chado_search_create_germplasm_search_by_country_mview() {
       AND CVTT.cv_id = (SELECT cv_id FROM cv WHERE name='taxonomic_rank')),
       'no_rank', ''), O.infraspecific_name) AS organism,
     V.name AS stock_type,
-    COALESCE(GEO.country, '0[Country Not Specified]'),
+    COALESCE(GEO.country, '[Country Not Specified]'),
     GEO.state,
     S.description
   FROM stock S

@@ -26,6 +26,16 @@ function chado_search_germplasm_search_by_country_form ($form) {
       ->table('chado_search_germplasm_search_by_country')
       ->multiple(TRUE)
   );
+  # Move "[Country Not Specified]" to second position in associative array. This is
+  # a term defined in the materialized view to replace NULL in the country column.
+  if (array_key_exists("[Country Not Specified]", $form->form["country"]["#options"])) {
+    unset($form->form["country"]["#options"]["[Country Not Specified]"]);
+    $form->form["country"]["#options"] = array_merge(
+      array_slice($form->form["country"]["#options"], 0, 1),
+      ['[Country Not Specified]' => '[Country Not Specified]'],
+      array_slice($form->form["country"]["#options"], 1)
+    );
+  }
   $form->addSubmit();
   $form->addReset();
   $form->addFieldset(
