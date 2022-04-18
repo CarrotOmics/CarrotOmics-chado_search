@@ -43,7 +43,7 @@ function chado_search_germplasm_search_by_country_form_submit ($form, &$form_sta
   // Get base sql
   $sql = "SELECT * FROM {chado_search_germplasm_search_by_country}";
   // Add conditions
-  $where = array();
+  $where = [];
   $where [] = Sql::selectFilter('country', $form_state, 'country');
 
   Set::result()
@@ -58,12 +58,12 @@ function chado_search_germplasm_search_by_country_form_submit ($form, &$form_sta
 */
 // Define the result table
 function chado_search_germplasm_search_by_country_table_definition () {
-  $headers = array(
+  $headers = [
     'uniquename:s:chado_search_link_stock:stock_id' => 'Germplasm',
     'organism:s:chado_search_link_organism:organism_id' => 'Species',
     'stock_type:s' => 'Stock Type',
     'country:s' => 'Country',
     'description:s' => 'Description',
-  );
+  ];
   return $headers;
 }
