@@ -67,6 +67,14 @@ function chado_search_germplasm_search_form ($form) {
       ->callback('chado_search_species_ajax_infraspecific_name')
       ->newLine()
   );
+  $form->addSelectFilter(
+      Set::selectFilter()
+      ->id('accession_type')
+      ->title('Accession Type')
+      ->column('accession_type')
+      ->table('chado_search_germplasm_search')
+      ->newLine()
+  );
   $form->addLabeledFilter(
       Set::labeledFilter()
       ->id('stock_description')
@@ -96,19 +104,20 @@ function chado_search_germplasm_search_form_submit ($form, &$form_state) {
   $sql = chado_search_germplasm_search_base_query();
   // Add conditions
   $where = array();
-  $where [0] = Sql::textFilterOnMultipleColumns('stock_uniquename', $form_state, array('uniquename', 'alias'), FALSE, 'stock_id:chado_search_germplasm_search');
+  $where [0] = Sql::textFilterOnMultipleColumns('stock_uniquename', $form_state, array('uniquename', 'alias'), FALSE, 'record_id:chado_search_germplasm_search');
   if ($form_state['values']['stock_uniquename_op'] != 'exactly') {
     $where [0] = str_replace('*', '%', $where[0]);
   }
-  $where [1] = Sql::fileOnMultipleColumns('stock_uniquename_file', array('uniquename', 'alias'), FALSE, FALSE, 'stock_id:chado_search_germplasm_search');
+  $where [1] = Sql::fileOnMultipleColumns('stock_uniquename_file', array('uniquename', 'alias'), FALSE, FALSE, 'record_id:chado_search_germplasm_search');
   $where [1] = str_replace('*', '%', $where[1]);
   $where [2] = Sql::selectFilter('family', $form_state, 'family');
   $where [3] = Sql::selectFilter('genus', $form_state, 'genus');
   $where [4] = Sql::selectFilter('species', $form_state, 'species');
   $where [5] = Sql::selectFilter('infraspecific_type', $form_state, 'infraspecific_type');
   $where [6] = Sql::selectFilter('infraspecific_name', $form_state, 'infraspecific_name');
-  $where [7] = Sql::labeledFilter('stock_description', $form_state, 'description', FALSE, 'contains');
-  $groupby = "stock_id:chado_search_germplasm_search";
+  $where [7] = Sql::selectFilter('accession_type', $form_state, 'accession_type');
+  $where [8] = Sql::labeledFilter('stock_description', $form_state, 'description', FALSE, 'contains');
+  $groupby = "record_id:chado_search_germplasm_search";
   Set::result()
     ->sql($sql)
     ->where($where)
@@ -128,7 +137,7 @@ function chado_search_germplasm_search_base_query() {
 // so use a double-escaped value \\173 and \\175 to pass them in unharmed
   $query =
     "SELECT
-       stock_id,
+       record_id,
        string_agg(
          distinct (
            CASE
@@ -164,12 +173,13 @@ function chado_search_germplasm_search_base_query() {
 // Define the result table
 function chado_search_germplasm_search_table_definition () {
   $headers = array(
-    'uniquename:s:chado_search_link_stock:stock_id' => 'Germplasm',
+    'uniquename:s:chado_search_link_generic:record_id' => 'Accession',
+    'accession_type:s' => 'Accession Type',
     'organism:s:chado_search_link_organism:organism_id' => 'Species',
     'links:s' => 'External Link',
     'alias:s' => 'Aliases',
     'description:s' => 'Description',
-    'genome:s' => 'Genome',
+//    'genome:s' => 'Genome',
   );
   return $headers;
 }
