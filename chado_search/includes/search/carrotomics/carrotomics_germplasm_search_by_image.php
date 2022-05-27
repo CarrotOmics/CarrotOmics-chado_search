@@ -42,6 +42,15 @@ function chado_search_germplasm_search_by_image_form ($form) {
   );
   $form->addSelectFilter(
       Set::selectFilter()
+      ->id('organism')
+      ->title('Organism')
+      ->column('organism')
+      ->table('chado_search_germplasm_search_by_image')
+      ->multiple(TRUE)
+      ->newLine()
+  );
+  $form->addSelectFilter(
+      Set::selectFilter()
       ->id('year')
       ->title('Year')
       ->column('year')
@@ -79,6 +88,7 @@ function chado_search_germplasm_search_by_image_form_submit ($form, &$form_state
   }
   $where [] = Sql::textFilter('legend', $form_state, 'legend');
   $where [] = Sql::selectFilter('year', $form_state, 'year');
+  $where [] = Sql::selectFilter('organism', $form_state, 'organism');
   Set::result()
     ->sql($sql)
     ->where($where)
