@@ -5,6 +5,14 @@
 */
 
 /*
+ * Link generic using format of "table:record" (used for stock + biomaterial)
+ */
+function chado_search_link_generic ($tablerecord) {
+    $parts = explode(':', $tablerecord);
+    return chado_search_link_entity($parts[0], $parts[1]);
+}
+
+/*
  * JBrowse link builder
  *
  * Determine if a location can be viewed in JBrowse, and if so
