@@ -3,6 +3,12 @@
 use ChadoSearch\Set;
 use ChadoSearch\Sql;
 
+// Link generic using format of "table:record" (used for stock + biomaterial)
+function chado_search_link_generic ($tablerecord) {
+    $parts = explode(':', $tablerecord);
+    return chado_search_link_entity($parts[0], $parts[1]);
+}
+
 /*************************************************************
  * Search form, form validation, and submit function
  */
