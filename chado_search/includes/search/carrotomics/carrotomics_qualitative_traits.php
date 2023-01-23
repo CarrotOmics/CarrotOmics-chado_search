@@ -8,6 +8,7 @@ use ChadoSearch\Sql;
  */
 // Search form
 function chado_search_qualitative_traits_form ($form) {
+  $desc = 'Search qualitative traits. These are listed on the <a href="/node/135">List of all traits in CarrotOmics</a> page.';
   $form->addTabs(
       Set::tab()
       ->id('trait_search_tabs')
@@ -76,6 +77,7 @@ function chado_search_qualitative_traits_form ($form) {
         ->id('topLevel')
         ->startWidget('trait1')
         ->endWidget('value3')
+        ->description($desc)
     );
 
   $form->addSubmit();
