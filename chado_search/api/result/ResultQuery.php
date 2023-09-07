@@ -25,7 +25,7 @@ class ResultQuery{
       // Re-arrange $where to make sure the indices are in order
       $tmpwhere = array();
       foreach ($where AS $item) {
-        if (trim($item)) {
+        if (isset($item) and trim($item)) {
           array_push($tmpwhere, $item);
         }
       }
