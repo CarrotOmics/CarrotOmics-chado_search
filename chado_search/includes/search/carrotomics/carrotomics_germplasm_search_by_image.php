@@ -82,7 +82,7 @@ function chado_search_germplasm_search_by_image_form_submit ($form, &$form_state
   $sql = "SELECT *, '<a href=' || '$imgs' || image_uri || ' target=_blank><img src=' || '$icons' || image_uri || '></a>' AS image FROM {chado_search_germplasm_search_by_image}";
   // Add conditions
   $where = array();
-  $where [0] = Sql::textFilterOnMultipleColumns('stock_uniquename', $form_state, array('uniquename', 'alias'), FALSE, 'stock_id:chado_search_germplasm_search');
+  $where [0] = Sql::textFilterOnMultipleColumns('stock_uniquename', $form_state, array('uniquename', 'alias'), FALSE, 'stock_id:chado_search_germplasm_search_by_image');
   if ($form_state['values']['stock_uniquename_op'] != 'exactly') {
     $where [0] = str_replace('*', '%', $where[0]);
   }
