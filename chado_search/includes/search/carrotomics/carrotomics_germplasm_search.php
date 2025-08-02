@@ -15,8 +15,8 @@ function chado_search_germplasm_search_form ($form) {
       ->items(['/search/germplasm' => 'Name',
                '/search/germplasm/collection' => 'Collection',
                '/search/germplasm/pedigree' => 'Pedigree',
-               '/search/germplasm/country' => 'Country', 
-               '/search/germplasm/geolocation' => 'Geolocation', 
+               '/search/germplasm/country' => 'Country',
+               '/search/germplasm/geolocation' => 'Geolocation',
                '/search/germplasm/image' => 'Image'])
   );
   $form->addTextFilter(
@@ -44,28 +44,28 @@ function chado_search_germplasm_search_form ($form) {
       ->id('genus')
       ->title('Genus')
       ->dependOnId('family')
-      ->callback('chado_search_species_ajax_genus')
+      ->callback('chado_search_germplasm_ajax_genus')
   );
   $form->addDynamicSelectFilter(
       Set::dynamicSelectFilter()
       ->id('species')
       ->title('Species')
       ->dependOnId('genus')
-      ->callback('chado_search_species_ajax_species')
+      ->callback('chado_search_germplasm_ajax_species')
   );
   $form->addDynamicSelectFilter(
       Set::dynamicSelectFilter()
       ->id('infraspecific_type')
       ->title('Infraspecific type')
       ->dependOnId('species')
-      ->callback('chado_search_species_ajax_infraspecific_type')
+      ->callback('chado_search_germplasm_ajax_infraspecific_type')
   );
   $form->addDynamicSelectFilter(
       Set::dynamicSelectFilter()
       ->id('infraspecific_name')
       ->title('Infraspecific name')
       ->dependOnId('infraspecific_type')
-      ->callback('chado_search_species_ajax_infraspecific_name')
+      ->callback('chado_search_germplasm_ajax_infraspecific_name')
       ->newLine()
   );
   $form->addSelectFilter(
@@ -189,19 +189,19 @@ function chado_search_germplasm_search_table_definition () {
  * AJAX callbacks
  */
 // User defined: Populating the landmark for selected organism
-function chado_search_species_ajax_genus ($val) {
+function chado_search_germplasm_ajax_genus ($val) {
   $sql = "SELECT distinct genus FROM {chado_search_species} WHERE family = :family ORDER BY genus";
   return chado_search_bind_dynamic_select(array(':family' => $val), 'genus', $sql);
 }
-function chado_search_species_ajax_species ($val) {
+function chado_search_germplasm_ajax_species ($val) {
   $sql = "SELECT distinct species FROM {chado_search_species} WHERE genus = :genus ORDER BY species";
   return chado_search_bind_dynamic_select(array(':genus' => $val), 'species', $sql);
 }
-function chado_search_species_ajax_infraspecific_type ($val) {
+function chado_search_germplasm_ajax_infraspecific_type ($val) {
   $sql = "SELECT distinct infraspecific_type FROM {chado_search_species} WHERE species = :species ORDER BY infraspecific_type";
   return chado_search_bind_dynamic_select(array(':species' => $val), 'infraspecific_type', $sql);
 }
-function chado_search_species_ajax_infraspecific_name ($val) {
+function chado_search_germplasm_ajax_infraspecific_name ($val) {
   $sql = "SELECT distinct infraspecific_name FROM {chado_search_species} WHERE infraspecific_type=:infraspecific_type ORDER BY infraspecific_name";
   return chado_search_bind_dynamic_select(array(':infraspecific_type' => $val), 'infraspecific_name', $sql);
 }
