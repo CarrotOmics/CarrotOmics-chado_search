@@ -105,39 +105,39 @@ function chado_search_germplasm_search_by_geolocation_form_validate ($form, &$fo
   // Validate latitude
   $querylat = trim($form_state['values']['latitude']);
   if (!$querylat) {
-    form_set_error('', t('Latitude is required.'));
+    $form_state->setErrorByName('', t('Latitude is required.'));
   }
   $querylatval = geoconvert( $querylat );
   if (!$querylatval) {
-    form_set_error('', t('Latitude as entered is not a valid latitude.'));
+    $form_state->setErrorByName('', t('Latitude as entered is not a valid latitude.'));
   }
   if (($querylatval < -90.0) or ($querylatval > 90.0)) {
-    form_set_error('', t('Latitude must be between -90 and 90.'));
+    $form_state->setErrorByName('', t('Latitude must be between -90 and 90.'));
   }
 
   // Validate longitude
   $querylong = trim($form_state['values']['longitude']);
   if (!$querylong) {
-    form_set_error('', t('Longitude is required.'));
+    $form_state->setErrorByName('', t('Longitude is required.'));
   }
   $querylongval = geoconvert( $querylong );
   if (!$querylongval) {
-    form_set_error('', t('longitude as entered is not a valid longitude.'));
+    $form_state->setErrorByName('', t('longitude as entered is not a valid longitude.'));
   }
   if (($querylongval < -180.0) or ($querylongval > 180.0)) {
-    form_set_error('', t('Longitude must be between -180 and 180.'));
+    $form_state->setErrorByName('', t('Longitude must be between -180 and 180.'));
   }
 
   // Validate distance
   $querydistance = trim($form_state['values']['distance']);
   if (!$querydistance) {
-    form_set_error('', t('A positive distance value in kilomenters is required.'));
+    $form_state->setErrorByName('', t('A positive distance value in kilomenters is required.'));
   }
   if (!(preg_match('/^[\d\.]+$/', $querydistance))) {
-    form_set_error('', t('The distance as entered is not valid, it must be a positive number without "+".'));
+    $form_state->setErrorByName('', t('The distance as entered is not valid, it must be a positive number without "+".'));
   }
   if (preg_match('/\..*\./', $querydistance)) {
-    form_set_error('', t('The distance as entered is not valid, it has more than one period character.'));
+    $form_state->setErrorByName('', t('The distance as entered is not valid, it has more than one period character.'));
   }
 }
 

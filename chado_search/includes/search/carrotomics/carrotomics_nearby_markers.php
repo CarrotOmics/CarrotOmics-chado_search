@@ -56,11 +56,11 @@ function chado_search_nearby_markers_form ($form) {
 function chado_search_nearby_markers_form_validate ($form, &$form_state) {
   $locus = $form_state['values']['nearby_marker_locus'];
   if (!$locus) {
-    form_set_error('', t('Locus name is required.'));
+    $form_state->setErrorByName('', t('Locus name is required.'));
   }
   $distance = $form_state['values']['nearby_marker_distance'];
   if (!is_numeric($distance)) {
-    form_set_error('', t('Please input a number for the distance.'));
+    $form_state->setErrorByName('', t('Please input a number for the distance.'));
   }
 }
 // Submit the form
