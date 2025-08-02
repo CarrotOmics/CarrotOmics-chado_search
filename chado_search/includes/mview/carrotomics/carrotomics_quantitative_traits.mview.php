@@ -73,5 +73,9 @@ function chado_search_create_quantitative_traits_mview() {
       PRJ ON PRJ.nd_experiment_id = NEP.nd_experiment_id
     WHERE P.value ~ '^\d+\.?\d*$'";
 
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '');
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

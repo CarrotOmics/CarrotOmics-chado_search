@@ -70,5 +70,10 @@ function chado_search_create_germplasm_search_by_country_mview() {
     ) GEO ON S.stock_id = GEO.stock_id
   WHERE S.type_id <> (SELECT cvterm_id FROM cvterm WHERE name = 'sample' AND cv_id =(SELECT cv_id FROM cv WHERE name = 'MAIN'))
   ";
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '', FALSE);
+
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

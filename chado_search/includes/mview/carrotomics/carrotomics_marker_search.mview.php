@@ -257,5 +257,9 @@ function chado_search_create_marker_search_mview() {
         ) TRAIT ON TRAIT.marker_feature_id = MARKER.feature_id
       WHERE MARKER.type_id IN (SELECT cvterm_id FROM cvterm WHERE name IN ('genetic_marker', 'QTL', 'heritable_phenotypic_marker') AND cv_id = (SELECT cv_id FROM cv WHERE name = 'sequence'))";
 
-  tripal_add_mview ( $view_name, 'chado_search', $schema, $sql, '' );
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

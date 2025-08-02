@@ -135,5 +135,9 @@ function chado_search_create_sequence_search_mview() {
       INNER JOIN cvterm FV ON FV.cvterm_id = F.type_id
       WHERE F.type_id IN (SELECT cvterm_id FROM cvterm WHERE name IN ('gene', 'mRNA', 'contig', 'R_motif', 'R_group', 'EST') AND cv_id = (SELECT cv_id FROM cv WHERE name = 'sequence'))";
 
-  tripal_add_mview ( $view_name, 'chado_search', $schema, $sql, '' );
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

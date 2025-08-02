@@ -237,5 +237,9 @@ WHERE
       (A.analysis_id IN (SELECT analysis_id FROM analysisprop WHERE type_id = (SELECT cvterm_id FROM cvterm WHERE cv_id = (SELECT cv_id FROM cv WHERE name = 'rdfs') AND name = 'type') AND value IN ('whole_genome', 'genome_assembly', 'genome_annotation')))
       )";
 
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '');
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

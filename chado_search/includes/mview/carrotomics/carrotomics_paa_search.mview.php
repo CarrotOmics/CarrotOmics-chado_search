@@ -46,5 +46,9 @@ SELECT 'Assay' AS type, AY.assay_id AS id, AY.name, AY.description
   FROM assay AY
 ORDER BY name";
 
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '');
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

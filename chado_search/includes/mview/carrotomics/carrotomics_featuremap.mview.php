@@ -132,5 +132,9 @@ LEFT JOIN (
 ) PATP ON PATP.object_id = STK.stock_id
 ORDER BY FM.featuremap_id";
 
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '');
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

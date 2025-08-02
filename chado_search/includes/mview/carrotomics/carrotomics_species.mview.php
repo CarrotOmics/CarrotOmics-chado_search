@@ -138,5 +138,9 @@ FROM organism O
 WHERE genus NOT IN ('N/A')
 ORDER BY genus, species, infraspecific_type, infraspecific_name";
 
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '');
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

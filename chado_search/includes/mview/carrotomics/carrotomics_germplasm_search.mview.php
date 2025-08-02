@@ -191,5 +191,10 @@ LEFT JOIN (
     )
   )
 ) ALIAS2 ON ALIAS2.biomaterial_id = B.biomaterial_id";
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '');
+
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }

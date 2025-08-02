@@ -39,5 +39,9 @@ LEFT JOIN cvterm CV ON F.type_id=CV.cvterm_id
 LEFT JOIN file_license FLI ON F.file_id=FLI.file_id
 LEFT JOIN license L ON FLI.license_id=L.license_id";
 
-  tripal_add_mview($view_name, 'chado_search', $schema, $sql, '');
+  return [
+    'view_name' => $view_name,
+    'schema' => $schema,
+    'sql' => $sql,
+  ];
 }
