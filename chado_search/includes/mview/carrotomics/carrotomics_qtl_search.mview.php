@@ -2,7 +2,6 @@
 // Create 'germplasm_search' MView
 function chado_search_create_qtl_search_mview() {
   $view_name = 'chado_search_qtl_search';
-  chado_search_drop_mview($view_name);
   $schema = array (
   'table' => 'chado_search_qtl_search',
   'fields' => array (

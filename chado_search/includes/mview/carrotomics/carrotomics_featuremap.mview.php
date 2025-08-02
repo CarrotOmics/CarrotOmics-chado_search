@@ -2,7 +2,6 @@
 // Create 'germplasm_search' MView
 function chado_search_create_featuremap_mview() {
   $view_name = 'chado_search_featuremap';
-  chado_search_drop_mview($view_name);
   $schema = array (
   'table' => $view_name,
   'fields' => array (

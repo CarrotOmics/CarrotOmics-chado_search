@@ -2,7 +2,6 @@
 // Create 'germplasm_search' MView
 function chado_search_create_paa_search_mview() {
   $view_name = 'chado_search_paa_search';
-  chado_search_drop_mview($view_name);
   // name is text in project and assay, but is character varying(255) in analysis
   // description is text in all
   $schema = array (

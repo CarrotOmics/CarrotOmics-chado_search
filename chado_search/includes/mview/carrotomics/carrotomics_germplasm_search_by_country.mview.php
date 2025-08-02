@@ -2,7 +2,6 @@
 // Create 'germplasm_search_by_country' MView
 function chado_search_create_germplasm_search_by_country_mview() {
   $view_name = 'chado_search_germplasm_search_by_country';
-  chado_search_drop_mview($view_name);
   $schema = array (
     'table' => 'chado_search_germplasm_search_by_country',
     'fields' => array (

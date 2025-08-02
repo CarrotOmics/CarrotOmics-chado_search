@@ -2,7 +2,6 @@
 // Create 'sequence_search' MView
 function chado_search_create_sequence_search_mview() {
   $view_name = 'chado_search_sequence_search';
-  chado_search_drop_mview ( $view_name );
   $schema = array (
   'table' => $view_name,
   'fields' => array (

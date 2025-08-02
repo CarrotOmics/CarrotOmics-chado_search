@@ -2,7 +2,6 @@
 // Create 'germplasm_search_by_geolocation' MView
 function chado_search_create_germplasm_search_by_geolocation_mview() {
   $view_name = 'chado_search_germplasm_search_by_geolocation';
-  chado_search_drop_mview($view_name);
   $schema = array (
     'table' => $view_name,
     'fields' => array (

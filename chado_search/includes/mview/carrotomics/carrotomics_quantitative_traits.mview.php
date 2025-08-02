@@ -2,7 +2,6 @@
 // Create 'marker_search' MView
 function chado_search_create_quantitative_traits_mview() {
   $view_name = 'chado_search_quantitative_traits';
-  chado_search_drop_mview($view_name);
   $schema = array (
   'table' => $view_name,
   'fields' => array (
