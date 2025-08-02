@@ -148,7 +148,7 @@ SELECT string_agg(distinct value, '; ')
 FROM (
   SELECT
   AF2.feature_id,
-  array_to_string (regexp_matches(value, 'name="(.+?)"', 'g'), '') AS value
+  array_to_string (regexp_matches(value, 'name=\"(.+?)\"', 'g'), '') AS value
   FROM analysisfeatureprop AFP2
   INNER JOIN analysisfeature AF2 ON AF2.analysisfeature_id = AFP2.analysisfeature_id
   WHERE AFP2.type_id = (SELECT cvterm_id FROM cvterm WHERE name = 'analysis_interpro_xmloutput_hit')
