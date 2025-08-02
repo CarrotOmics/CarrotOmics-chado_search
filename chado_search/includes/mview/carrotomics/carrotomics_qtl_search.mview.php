@@ -140,20 +140,20 @@ function chado_search_create_qtl_search_mview() {
   max(CATEGORY.obj) AS category,
   '::' || string_agg(distinct CATEGORY.obj, '::') || '::' AS category_filter,
   max(MAP.featuremap_id) AS featuremap_id,
-  string_agg(distinct MAP.name, '; ') AS map,
+  string_agg(distinct MAP.name, '. ') AS map,
   max(CO_LOC_M.nid) AS coloc_marker_nid,
-  string_agg(distinct CO_LOC_M.uniquename, '; ') AS colocalizing_marker,
+  string_agg(distinct CO_LOC_M.uniquename, '. ') AS colocalizing_marker,
   max(NEIGHBOR_M.nid) AS neighbor_marker_nid,
-  string_agg(distinct NEIGHBOR_M.uniquename, '; ') AS neighboring_marker,
+  string_agg(distinct NEIGHBOR_M.uniquename, '. ') AS neighboring_marker,
   max(STUDY.project_id) AS study_project_id,
-  string_agg(distinct STUDY.name, '; ') AS study,
+  string_agg(distinct STUDY.name, '. ') AS study,
   max(POP.nid) AS pop_nid,
-  string_agg(distinct POP.uniquename, '; ') AS population,
-  string_agg(distinct LOD.value, '; ') AS lod,
-  string_agg(distinct R2.value, '; ') AS r2,
-  string_agg(distinct ADR.value, '; ') AS ad_ratio,
+  string_agg(distinct POP.uniquename, '. ') AS population,
+  string_agg(distinct LOD.value, '. ') AS lod,
+  string_agg(distinct R2.value, '. ') AS r2,
+  string_agg(distinct ADR.value, '. ') AS ad_ratio,
   max(PUB.pub_id) AS ref_pub_id,
-  string_agg(distinct PUB.uniquename, '; ') AS reference,
+  string_agg(distinct PUB.uniquename, '. ') AS reference,
   max(ALIASES.trait_aliases),
   CASE WHEN max(QTLTYPE.name) = 'heritable_phenotypic_marker' THEN 'MTL' ELSE max(QTLTYPE.name) END AS type
 FROM feature QTL
@@ -193,7 +193,7 @@ LEFT JOIN
    AND V.cv_id = (SELECT cv_id FROM cv WHERE name = 'relationship')
   ) NEIGHBOR_M ON NEIGHBOR_M.object_id = QTL.feature_id
 LEFT JOIN
-  (SELECT string_agg(value, '; ') as value, feature_id FROM featureprop FP
+  (SELECT string_agg(value, '. ') as value, feature_id FROM featureprop FP
    WHERE type_id =
     (SELECT cvterm_id FROM cvterm
      WHERE name = 'LOD'
@@ -202,7 +202,7 @@ LEFT JOIN
    GROUP BY feature_id
    ) LOD ON LOD.feature_id = QTL.feature_id
 LEFT JOIN
-  (SELECT string_agg(value, '; ') as value, feature_id FROM featureprop FP
+  (SELECT string_agg(value, '. ') as value, feature_id FROM featureprop FP
    WHERE type_id =
     (SELECT cvterm_id FROM cvterm
      WHERE name = 'R2'
@@ -211,7 +211,7 @@ LEFT JOIN
    GROUP BY feature_id
    ) R2 ON R2.feature_id = QTL.feature_id
 LEFT JOIN
-  (SELECT string_agg(value, '; ') as value, feature_id FROM featureprop FP
+  (SELECT string_agg(value, '. ') as value, feature_id FROM featureprop FP
    WHERE type_id =
     (SELECT cvterm_id FROM cvterm
      WHERE name = 'additivity_dominance_ratio'

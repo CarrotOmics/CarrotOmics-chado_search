@@ -10,12 +10,12 @@ class ResultQuery{
   public $sql;
   private $dl_sql;
   private $sequence = 0; // make sure SQL clauses are added in sequence: 1. WHERE 2. GROUPBY 3. <append-free-text>
-  
+
   function __construct($search_id, $sql) {
     $this->search_id = $search_id;
     $this->sql = $sql;
   }
-  
+
   function addWhere ($where) {
     if ($this->sequence > 0) {
       drupal_set_message("Cannot add WHERE clause after GROUPBY or free-text addition", 'error');
@@ -46,7 +46,7 @@ class ResultQuery{
     }
     return $this;
   }
-  
+
   function addGroupBy ($groupby) {
     if ($this->sequence > 1) {
       drupal_set_message("Cannot add GROUP BY clause after free-text addition", 'error');
@@ -57,7 +57,7 @@ class ResultQuery{
       $gb = explode(":", $groupby);
       $gcol = $gb[0];
       $gtable = $gb [1];
-      $separator = "; ";
+      $separator = ". ";
       if (count ($gb) > 2) {
         $separator = $gb [2];
       }
@@ -74,7 +74,7 @@ class ResultQuery{
         else {
           $gbsql .= "$col->column_name, ";
         }
-      }    
+      }
 
       $gbsql = rtrim($gbsql, ', ');
       // Find the first top level * (i.e. the one that's not in a pair of parenthese) and replace it with aggregated column expressions
@@ -109,7 +109,7 @@ class ResultQuery{
     }
     return $this;
   }
-  
+
   function appendSQL($append) {
     if ($append) {
       $this->sql .= ' ' . $append;
@@ -117,7 +117,7 @@ class ResultQuery{
     }
     return $this;
   }
-  
+
   function getSQL () {
     SessionVar::setSessionVar($this->search_id, 'sql', $this->sql);
     if ($this->dl_sql) {
@@ -125,7 +125,7 @@ class ResultQuery{
     }
     return $this->sql;
   }
-  
+
   function setSQL ($sql, $dl_sql = NULL) {
     $this->sql = $sql;
     SessionVar::setSessionVar($this->search_id, 'sql', $sql);
@@ -134,12 +134,12 @@ class ResultQuery{
       SessionVar::setSessionVar($this->search_id, 'download', $dl_sql);
     }
   }
-  
+
   function getCountSQL () {
     $csql = "SELECT count (*) FROM ($this->sql) BASE";
     return $csql;
   }
-  
+
   function count() {
     try {
       $count_sql = $this->getCountSQL();

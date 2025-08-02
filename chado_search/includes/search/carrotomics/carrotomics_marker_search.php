@@ -258,7 +258,7 @@ function chado_search_marker_search_carrotomics_download ($handle, $result, $sql
     F.feature_id = Marker.marker_feature_id
     GROUP BY F.feature_id";
   $sql_citation = "
-    SELECT string_agg(value, ';') AS citation
+    SELECT string_agg(value, '. ') AS citation
     FROM {pubprop} PP
     INNER JOIN {feature_pub} FP ON FP.pub_id = PP.pub_id
     WHERE PP.type_id = (SELECT cvterm_id FROM {cvterm} WHERE name = 'Citation' AND cv_id = (SELECT cv_id FROM {cv} WHERE name = 'tripal_pub'))

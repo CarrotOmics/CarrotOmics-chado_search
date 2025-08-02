@@ -145,13 +145,13 @@ function chado_search_quantitative_traits_form_submit ($form, &$form_state) {
     }
     // If there is no $condition, use a different SQL to group stocks
     if (!$conditions) {
-      $disabledCols = "value0;value1;value2;prj0;prj1;prj2";
-      $sql = "SELECT first(stock_id) AS stock_id, variety_name, first(organism_id) AS organism_id, first(organism) AS organism, string_agg(trait_descriptor || ' = ' || trait_value, '; ') AS all_traits FROM {chado_search_quantitative_traits} GROUP BY variety_name";
+      $disabledCols = "value0. value1. value2. prj0. prj1. prj2";
+      $sql = "SELECT first(stock_id) AS stock_id, variety_name, first(organism_id) AS organism_id, first(organism) AS organism, string_agg(trait_descriptor || ' = ' || trait_value, '. ') AS all_traits FROM {chado_search_quantitative_traits} GROUP BY variety_name";
     } else { // If there is $condition, dynamically determine which columns to show
       $disabledCols = "all_traits";
       foreach ($t AS $idx => $enabled) {
         if (!$enabled) {
-          $disabledCols .= ";value$idx;prj$idx";
+          $disabledCols .= ". value$idx. prj$idx";
         } else {
           $title = explode('=', $enabled);
           $t = trim($title[1], ' \'');

@@ -222,7 +222,7 @@ function chado_search_create_marker_search_mview() {
       LEFT JOIN
         (SELECT
            feature_id,
-           string_agg(value, '; ') AS value
+           string_agg(value, '. ') AS value
          FROM featureprop FP
          WHERE
            FP.type_id = (SELECT cvterm_id FROM cvterm WHERE name = 'alias' AND cv_id = (SELECT cv_id FROM cv WHERE name = 'MAIN'))
@@ -232,7 +232,7 @@ function chado_search_create_marker_search_mview() {
       LEFT JOIN
         (SELECT
             feature_id,
-            string_agg(distinct name, ';') AS value
+            string_agg(distinct name, '. ') AS value
           FROM synonym S
           INNER JOIN feature_synonym FS ON S.synonym_id = FS.synonym_id
           GROUP BY feature_id

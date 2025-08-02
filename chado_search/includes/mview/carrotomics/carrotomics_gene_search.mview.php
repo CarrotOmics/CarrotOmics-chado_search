@@ -121,7 +121,7 @@ A.analysis_id,
 (SELECT string_agg(distinct
    (SELECT array_to_string(regexp_matches(value, '<Hit_def>(.+?)</Hit_def>'), '')
      FROM analysisfeatureprop AFP2 WHERE AFP2.analysisfeatureprop_id = AFP.analysisfeatureprop_id)
-    , '; ')
+    , '. ')
   FROM analysisfeatureprop AFP
   INNER JOIN analysisfeature AF2 ON AF2.analysisfeature_id = AFP.analysisfeature_id
   WHERE
@@ -133,7 +133,7 @@ A.analysis_id,
 (SELECT string_agg(distinct
    (SELECT trim(regexp_replace(value, '<.+>', ''))
      FROM analysisfeatureprop AFP2 WHERE AFP2.analysisfeatureprop_id = AFP.analysisfeatureprop_id)
-    , '; ')
+    , '. ')
   FROM analysisfeatureprop AFP
   INNER JOIN analysisfeature AF2 ON AF2.analysisfeature_id = AFP.analysisfeature_id
   WHERE
@@ -143,7 +143,7 @@ A.analysis_id,
 ) AS kegg_value,
 -- Interpro
 (
-SELECT string_agg(distinct value, '; ')
+SELECT string_agg(distinct value, '. ')
 FROM (
   SELECT
   AF2.feature_id,
@@ -156,7 +156,7 @@ FROM (
 ) AS interpro_value,
 -- GO term
 (
-SELECT string_agg(distinct name, '; ')
+SELECT string_agg(distinct name, '. ')
 FROM (
   SELECT feature_id,
   V.name
@@ -168,7 +168,7 @@ FROM (
 ) AS go_term,
 -- GO accession
 (
-SELECT string_agg(distinct acc, '; ')
+SELECT string_agg(distinct acc, '. ')
 FROM (
   SELECT feature_id,
   'GO:' || (SELECT accession FROM dbxref WHERE dbxref_id = V.dbxref_id) AS acc
@@ -180,7 +180,7 @@ FROM (
 ) AS go_acc,
 -- Genbank Keywords
 (
-SELECT string_agg(value, '; ')
+SELECT string_agg(value, '. ')
 FROM featureprop
 WHERE type_id IN
   (SELECT cvterm_id
