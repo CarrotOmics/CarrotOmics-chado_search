@@ -179,8 +179,8 @@ function chado_search_gene_search_table_definition () {
  * AJAX callbacks
  */
 function chado_search_gene_search_ajax_location ($val) {
-  $sql = "SELECT distinct landmark FROM {chado_search_gene_search} WHERE analysis IN (:analysis) ORDER BY landmark";
-  $list = chado_search_bind_dynamic_select(array(':analysis' => $val), 'landmark', $sql);
+  $sql = "SELECT distinct landmark FROM {chado_search_gene_search} WHERE analysis IN (:analysis[]) ORDER BY landmark";
+  $list = chado_search_bind_dynamic_select(array(':analysis[]' => $val), 'landmark', $sql);
 
   # custom sort order only for DCARv2
   if (array_key_exists("DCARv2_B1", $list)) {
