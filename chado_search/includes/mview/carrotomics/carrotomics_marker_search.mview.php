@@ -258,8 +258,10 @@ function chado_search_create_marker_search_mview() {
       WHERE MARKER.type_id IN (SELECT cvterm_id FROM cvterm WHERE name IN ('genetic_marker', 'QTL', 'heritable_phenotypic_marker') AND cv_id = (SELECT cv_id FROM cv WHERE name = 'sequence'))";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

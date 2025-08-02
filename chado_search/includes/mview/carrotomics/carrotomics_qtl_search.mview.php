@@ -266,8 +266,10 @@ OR QTLTYPE.name = 'heritable_phenotypic_marker'
 GROUP BY QTL.feature_id";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

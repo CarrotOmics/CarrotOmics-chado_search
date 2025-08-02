@@ -136,8 +136,10 @@ function chado_search_create_sequence_search_mview() {
       WHERE F.type_id IN (SELECT cvterm_id FROM cvterm WHERE name IN ('gene', 'mRNA', 'contig', 'R_motif', 'R_group', 'EST') AND cv_id = (SELECT cv_id FROM cv WHERE name = 'sequence'))";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

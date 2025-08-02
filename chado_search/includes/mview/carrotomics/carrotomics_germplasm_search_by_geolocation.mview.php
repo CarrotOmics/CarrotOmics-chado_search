@@ -126,9 +126,11 @@ function chado_search_create_germplasm_search_by_geolocation_mview() {
   WHERE S.type_id <> (SELECT cvterm_id FROM cvterm WHERE name = 'sample' AND cv_id =(SELECT cv_id FROM cv WHERE name = 'MAIN'))";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 
 }

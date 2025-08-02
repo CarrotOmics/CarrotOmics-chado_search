@@ -47,8 +47,10 @@ SELECT 'Assay' AS type, AY.assay_id AS id, AY.name, AY.description
 ORDER BY name";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

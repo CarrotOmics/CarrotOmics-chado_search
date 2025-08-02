@@ -193,8 +193,10 @@ LEFT JOIN (
 ) ALIAS2 ON ALIAS2.biomaterial_id = B.biomaterial_id";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

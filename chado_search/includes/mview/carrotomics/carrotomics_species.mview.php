@@ -139,8 +139,10 @@ WHERE genus NOT IN ('N/A')
 ORDER BY genus, species, infraspecific_type, infraspecific_name";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

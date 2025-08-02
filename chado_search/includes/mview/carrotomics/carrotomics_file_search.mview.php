@@ -40,8 +40,10 @@ LEFT JOIN file_license FLI ON F.file_id=FLI.file_id
 LEFT JOIN license L ON FLI.license_id=L.license_id";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

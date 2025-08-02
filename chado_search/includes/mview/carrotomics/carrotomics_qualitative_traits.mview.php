@@ -73,8 +73,10 @@ function chado_search_create_qualitative_traits_mview() {
     WHERE P.value !~ '^[\d\.]+$'";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

@@ -72,8 +72,10 @@ function chado_search_create_germplasm_search_by_country_mview() {
   ";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }

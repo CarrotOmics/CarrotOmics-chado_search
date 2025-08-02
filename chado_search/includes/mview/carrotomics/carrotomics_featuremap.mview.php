@@ -133,8 +133,10 @@ LEFT JOIN (
 ORDER BY FM.featuremap_id";
 
   return [
-    'view_name' => $view_name,
-    'schema' => $schema,
-    'sql' => $sql,
+    [
+      'view_name' => $view_name,
+      'schema' => $schema,
+      'sql' => $sql,
+    ]
   ];
 }
