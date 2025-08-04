@@ -145,7 +145,7 @@ function chado_search_germplasm_search_base_query() {
            CASE
              WHEN urlprefix <> '' AND urlprefix IS NOT NULL
              THEN
-               '<a href=\"' || REGEXP_REPLACE(urlprefix, '\\173accession\\175', accession) || '\">' || accession || '</a>&nbsp;&nbsp; '
+               '<a href=\"' || REGEXP_REPLACE(urlprefix, '\\173accession\\175', accession) || '\">' || accession || '</a>\u{00A0}\u{00A0} '
              ELSE
                ''
              END
