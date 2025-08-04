@@ -63,9 +63,9 @@ function chado_search_primer_search_form_submit ($form, &$form_state) {
   // $sequences is passed as a reference and returns the "degeneratized"
   // sequence array, e.g. 'ACGM' from the form becomes ['acga', 'acgc']
   // The orientation from the form is encoded as F=0 R=1 both=2
-  $residues_query = $form_state["input"]["feature_residues"];
+  $residues_query = $form_state->getValue('feature_residues');
   if ($residues_query) {
-    $orientation = $form_state["input"]["orientation"];
+    $orientation = $form_state->getValue('orientation');
     $sequences=[];
     if ($orientation != 1) {  // Forward or Both
       primer_search_undegenerate($residues_query, $sequences);
@@ -73,7 +73,7 @@ function chado_search_primer_search_form_submit ($form, &$form_state) {
     if ($orientation != 0 ) { // Reverse or Both
       primer_search_undegenerate(primer_search_revcomp($residues_query), $sequences);
     }
-    $op = $form_state["input"]["feature_residues_op"];
+    $op = $form_state->getValue('feature_residues_op');
     $casesensitive = false;
     $delimiter = '|';
     $logic = ($op == 'not_contain')?'AND':'OR';

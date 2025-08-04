@@ -58,11 +58,11 @@ $url3 = '';
 }
 // Validate the form
 function chado_search_nearby_markers_form_validate ($form, &$form_state) {
-  $locus = $form_state['values']['nearby_marker_locus'];
+  $locus = $form_state->getValue('nearby_marker_locus');
   if (!$locus) {
     $form_state->setErrorByName('', t('Locus name is required.'));
   }
-  $distance = $form_state['values']['nearby_marker_distance'];
+  $distance = $form_state->getValue('nearby_marker_distance');
   if (!is_numeric($distance)) {
     $form_state->setErrorByName('', t('Please input a number for the distance.'));
   }
@@ -73,7 +73,7 @@ function chado_search_nearby_markers_form_submit ($form, &$form_state) {
   $sql = chado_search_nearby_markers_base_query();
   // Add conditions
   $sql .= " AND " . Sql::labeledFilter('nearby_marker_locus', $form_state, 'F.name');
-  $distance = $form_state['values']['nearby_marker_distance'];
+  $distance = $form_state->getValue('nearby_marker_distance');
   $sql = "
     SELECT * FROM (" . $sql . ") A
     INNER JOIN (

@@ -47,7 +47,7 @@ function chado_search_germplasm_search_by_pedigree_form_submit ($form, &$form_st
   // Add conditions
   $where = array();
   $where [0] = Sql::textFilter('pedigree', $form_state, 'pedigree', FALSE);
-  if ($form_state['values']['pedigree_op'] != 'exactly') {
+  if ($form_state->getValue('pedigree_op') != 'exactly') {
     $where [0] = str_replace('*', '%', $where[0]);
   }
   Set::result()

@@ -103,7 +103,7 @@ function chado_search_germplasm_search_by_geolocation_form ($form) {
 function chado_search_germplasm_search_by_geolocation_form_validate ($form, &$form_state) {
 
   // Validate latitude
-  $querylat = trim($form_state['values']['latitude']);
+  $querylat = trim($form_state->getValue('latitude'));
   if (!$querylat) {
     $form_state->setErrorByName('', t('Latitude is required.'));
   }
@@ -116,7 +116,7 @@ function chado_search_germplasm_search_by_geolocation_form_validate ($form, &$fo
   }
 
   // Validate longitude
-  $querylong = trim($form_state['values']['longitude']);
+  $querylong = trim($form_state->getValue('longitude'));
   if (!$querylong) {
     $form_state->setErrorByName('', t('Longitude is required.'));
   }
@@ -129,7 +129,7 @@ function chado_search_germplasm_search_by_geolocation_form_validate ($form, &$fo
   }
 
   // Validate distance
-  $querydistance = trim($form_state['values']['distance']);
+  $querydistance = trim($form_state->getValue('distance'));
   if (!$querydistance) {
     $form_state->setErrorByName('', t('A positive distance value in kilomenters is required.'));
   }
@@ -152,9 +152,9 @@ function chado_search_germplasm_search_by_geolocation_form_submit ($form, &$form
   // Three values from the form are needed to construct the distance filter.
   // geoconvert() and form validation will sanitize the user input that is
   // embedded in this SQL.
-  $querylat = geoconvert( $form_state['values']['latitude'] );
-  $querylong = geoconvert( $form_state['values']['longitude'] );
-  $querydistance = $form_state['values']['distance'];
+  $querylat = geoconvert($form_state->getValue('latitude'));
+  $querylong = geoconvert($form_state->getValue('longitude'));
+  $querydistance = $form_state->getValue('distance');
 
   // The constant 6378.137 is the earth's radius in km
   // The distance calculation is rounded to the nearest 0.1 km

@@ -83,7 +83,7 @@ function chado_search_germplasm_search_by_image_form_submit ($form, &$form_state
   // Add conditions
   $where = array();
   $where [0] = Sql::textFilterOnMultipleColumns('stock_uniquename', $form_state, array('uniquename', 'alias'), FALSE, 'stock_id:chado_search_germplasm_search_by_image');
-  if ($form_state['values']['stock_uniquename_op'] != 'exactly') {
+  if ($form_state->getValue('stock_uniquename_op') != 'exactly') {
     $where [0] = str_replace('*', '%', $where[0]);
   }
   $where [] = Sql::textFilter('legend', $form_state, 'legend');

@@ -27,7 +27,7 @@ function chado_search_featuremap_form_submit ($form, &$form_state) {
   $sql = "SELECT * FROM {chado_search_featuremap}";
   $where = array();
   $where [0] = Sql::selectFilter('organism', $form_state, 'organism');
-  if (!$form_state['values']['organism']) {
+  if (!$form_state->getValue('organism')) {
     $genus = key_exists('genus', $_GET) ? check_plain($_GET['genus']) : NULL;
     $species = key_exists('species', $_GET) ? check_plain($_GET['species']) : NULL;
     $organism = key_exists('organism', $_GET) ? check_plain($_GET['organism']) : NULL;

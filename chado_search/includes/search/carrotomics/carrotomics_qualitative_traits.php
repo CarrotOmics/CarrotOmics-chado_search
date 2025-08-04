@@ -97,8 +97,8 @@ function chado_search_qualitative_traits_form_submit ($form, &$form_state) {
   $t[2] = Sql::selectFilter('trait3', $form_state, 'trait_descriptor');
   $v[2] = Sql::selectFilter('value3', $form_state, 'trait_value');
   $op = array();
-  $op[1] = $form_state['values']['op1'];
-  $op[2] = $form_state['values']['op2'];
+  $op[1] = $form_state->getValue('op1');
+  $op[2] = $form_state->getValue('op2');
   $conditions =Sql::pairConditions($t, $v);
     // Read from $conditions and generate the SQL
     $first_con = true;
