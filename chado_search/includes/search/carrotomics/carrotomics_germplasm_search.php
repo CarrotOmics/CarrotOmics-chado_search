@@ -106,7 +106,8 @@ function chado_search_germplasm_search_form_submit ($form, &$form_state) {
   // Add conditions
   $where = array();
   $where [0] = Sql::textFilterOnMultipleColumns('stock_uniquename', $form_state, array('uniquename', 'alias'), FALSE, 'record_id:chado_search_germplasm_search');
-  if ($form_state['values']['stock_uniquename_op'] != 'exactly') {
+  $stock_uniquename_op = $form_state->getValue('stock_uniquename_op');
+  if ($stock_uniquename_op != 'exactly') {
     $where [0] = str_replace('*', '%', $where[0]);
   }
   $where [1] = Sql::fileOnMultipleColumns('stock_uniquename_file', array('uniquename', 'alias'), FALSE, FALSE, 'record_id:chado_search_germplasm_search');
