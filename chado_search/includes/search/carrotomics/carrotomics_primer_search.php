@@ -2,7 +2,7 @@
 
 use Drupal\chado_search\Core\Set;
 use Drupal\chado_search\Core\Sql;
-use ChadoSearch\sql\ColumnCond;
+use Drupal\chado_search\Sql\ColumnCond;
 
 require_once 'carrotomics_api.php';
 

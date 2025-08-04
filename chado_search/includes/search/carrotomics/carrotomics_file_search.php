@@ -2,7 +2,6 @@
 
 use Drupal\chado_search\Core\Set;
 use Drupal\chado_search\Core\Sql;
-use ChadoSearch\sql\ColumnCond;
 
 /*************************************************************
  * Definition for the Search form
