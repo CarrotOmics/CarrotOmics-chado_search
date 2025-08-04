@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\chado_search\Core\Set;
 use Drupal\chado_search\Core\Sql;
 
@@ -37,12 +39,14 @@ function chado_search_nearby_markers_form ($form) {
   );
   $form->addSubmit();
   $form->addReset();
+// @todo  $url2 = Link::createFromRoute('Text tutorial', 'tutorial/sequence_search')->toString();
+$url2 = '';
+//@todo  $url3 = Link::createFromRoute('Email us with problems and suggestions', 'contact')->toString();
+$url3 = '';
   $desc = 'Search for markers in CarrotOmics. In search nearby markers site, users' .
           ' can obtain a list of all loci that are within a specified distance of the' .
-          ' particular locus on any genetic map.<br><b>' .
-          l('Short video tutorial', 'contact') . ' | ' .
-          l('Text tutorial', 'tutorial/search_nearby_markers') . ' | ' .
-          l('Email us with problems and suggestions', 'contact') . '</b>';
+          ' particular locus on any genetic map.<br><strong>' .
+          $url2 . ' | ' . $url3 . '</strong>';
   $form->addFieldset(
       Set::fieldset()
       ->id('nearby_markers_fieldset')

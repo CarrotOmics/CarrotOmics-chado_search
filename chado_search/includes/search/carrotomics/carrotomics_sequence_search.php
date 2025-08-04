@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\chado_search\Core\Set;
 use Drupal\chado_search\Core\Sql;
 
@@ -43,7 +45,8 @@ function chado_search_sequence_search_form ($form) {
       ->newLine()
       ->cache(TRUE)
   );
-  $icon = '/' . drupal_get_path('module', 'chado_search') . '/theme/images/question.gif';
+  $mod_path = \Drupal::service('extension.list.module')->getPath('chado_search');
+  $icon = '/' . $mod_path . '/theme/images/question.gif';
   $form->addSelectFilter(
       Set::selectFilter()
       ->id('analysis')
@@ -87,12 +90,17 @@ function chado_search_sequence_search_form ($form) {
   );
   $form->addSubmit();
   $form->addReset();
+  $url1 = Link::fromTextAndUrl('Short video tutorial',
+      Url::fromUri('https://www.youtube.com/watch?v=i0IuE1qQn0s', ['attributes' => ['target' => '_blank']]))->toString();
+// @todo  $url2 = Link::createFromRoute('Text tutorial', 'tutorial/sequence_search')->toString();
+$url2 = '';
+//@todo  $url3 = Link::createFromRoute('Email us with problems and suggestions', 'contact')->toString();
+$url3 = '';
   $desc =
   'Search for sequences by entering names in the field below. Alternatively, you may upload a file of names. 
       You may also filter results by sequence type and the sequence source. To select multiple options click while 
       holding the "ctrl" key. The results can be downloaded in FASTA or CSV tabular format.
-     <b>| ' . l('Short video tutorial', 'https://www.youtube.com/watch?v=i0IuE1qQn0s', array('attributes' => array('target' => '_blank'))) . ' | ' . l('Text tutorial', 'tutorial/sequence_search') . ' | ' .
-       l('Email us with problems and suggestions', 'contact') . '</b>';
+     <strong>| ' . $url1 . ' | ' . $url2 . ' | ' . $url3 . '</strong>';
   $form->addFieldset(
       Set::fieldset()
       ->id('sequence_search')

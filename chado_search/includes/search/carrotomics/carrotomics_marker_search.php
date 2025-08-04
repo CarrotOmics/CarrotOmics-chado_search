@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\chado_search\Core\Set;
 use Drupal\chado_search\Core\Sql;
 
@@ -32,7 +34,8 @@ function chado_search_marker_search_form ($form) {
       ->newLine()
   );
   // Restricted by Features
-  $icon = '/' . drupal_get_path('module', 'chado_search') . '/theme/images/question.gif';
+  $mod_path = \Drupal::service('extension.list.module')->getPath('chado_search');
+  $icon = '/' . $mod_path . '/theme/images/question.gif';
   $form->addSelectFilter(
       Set::selectFilter()
       ->id('marker_type')
@@ -112,12 +115,16 @@ function chado_search_marker_search_form ($form) {
       );
   $form->addSubmit();
   $form->addReset();
+  $url1 = Link::fromTextAndUrl('Short video tutorial',
+      Url::fromUri('https://www.youtube.com/watch?v=oqiuSI99mMg', ['attributes' => ['target' => '_blank']]))->toString();
+// @todo  $url2 = Link::createFromRoute('Text tutorial', 'tutorial/marker_search')->toString();
+$url2 = '';
+//@todo  $url3 = Link::createFromRoute('Email us with problems and suggestions', 'contact')->toString();
+$url3 = '';
   $desc = 'Search for markers in CarrotOmics. In advanced marker search site, users can' .
           ' perform combinatorial queries using categories such as name, type, species,' .
-          ' anchored position in genome and/or genetic map position.<br><b>' .
-          l('Short video tutorial', 'https://www.youtube.com/watch?v=oqiuSI99mMg', ['attributes' => ['target' => '_blank']]) .
-          ' | ' . l('Text tutorial', 'tutorial/marker_search') .
-          ' | ' . l('Email us with problems and suggestions', 'contact') . '</b>';
+          ' anchored position in genome and/or genetic map position.<br><strong>' .
+          $url1 . ' | ' . $url2 . ' | ' . $url3 . '</strong>';
   $form->addFieldset(
       Set::fieldset()
       ->id('top_level')

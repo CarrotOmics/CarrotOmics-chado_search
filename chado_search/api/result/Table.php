@@ -2,6 +2,8 @@
 
 namespace ChadoSearch\result;
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use ChadoSearch\SessionVar;
 
 require_once 'Source.php';

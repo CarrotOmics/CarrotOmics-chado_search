@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\chado_search\Core\Set;
 use Drupal\chado_search\Core\Sql;
 
@@ -81,10 +83,15 @@ function chado_search_qtl_search_form ($form) {
   );
   $form->addSubmit();
   $form->addReset();
+  $url1 = Link::fromTextAndUrl('Short video tutorial',
+      Url::fromUri('https://www.youtube.com/watch?v=Cu42oH_PXvc', ['attributes' => ['target' => '_blank']]))->toString();
+// @todo  $url2 = Link::createFromRoute('Text tutorial', 'tutorial/QTL_search')->toString();
+$url2 = '';
+//@todo  $url3 = Link::createFromRoute('Email us with problems and suggestions', 'contact')->toString();
+$url3 = '';
   $desc =
   'Search QTLs and/or MTLs (Mendelian Trait Loci) by any combination of species, trait category, trait name, published symbol or label.
-     <b>| ' . l('Short video tutorial', 'https://www.youtube.com/watch?v=Cu42oH_PXvc', array('attributes' => array('target' => '_blank'))) . ' | ' . l('Text tutorial', 'tutorial/QTL_search') . ' | ' .
-       l('Email us with problems and suggestions', 'contact') . '</b>';
+     <strong>| ' . $url1 . ' | ' . $url2 . ' | ' . $url3 . '</strong>';
   $form->addFieldset(
       Set::fieldset()
       ->id('qtl_search')

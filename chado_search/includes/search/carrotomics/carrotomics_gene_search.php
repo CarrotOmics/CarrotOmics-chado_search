@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\chado_search\Core\Set;
 use Drupal\chado_search\Core\Sql;
 
@@ -39,7 +41,8 @@ function chado_search_gene_search_form ($form) {
       ->labelWidth(100)
       ->newLine()
   );
-  $icon = '/' . drupal_get_path('module', 'chado_search') . '/theme/images/question.gif';
+  $mod_path = \Drupal::service('extension.list.module')->getPath('chado_search');
+  $icon = '/' . $mod_path . '/theme/images/question.gif';
   $form->addSelectFilter(
       Set::selectFilter()
       ->id('analysis')
@@ -118,11 +121,16 @@ function chado_search_gene_search_form ($form) {
   );
   $form->addSubmit();
   $form->addReset();
+  $url1 = Link::fromTextAndUrl('Short video tutorial',
+      Url::fromUri('https://youtu.be/P-Rw8i9Iz5E', ['attributes' => ['target' => '_blank']]))->toString();
+// @todo  $url2 = Link::createFromRoute('Text tutorial', 'tutorial/gene_search')->toString();
+$url2 = '';
+//@todo  $url3 = Link::createFromRoute('Email us with problems and suggestions', 'contact')->toString();
+$url3 = '';
   $desc =
-    'Search genes and transcripts by species, dataset, genome location, name and/or keyword. 
-      For keyword, enter any protein name of homologs, KEGG term/EC number, GO term, or InterPro term.  
-     <b>| ' . l('Short video tutorial', 'https://youtu.be/P-Rw8i9Iz5E', array('attributes' => array('target' => '_blank'))) . ' | ' . l('Text tutorial', 'tutorial/gene_search') . ' | ' . 
-    l('Email us with problems and suggestions', 'contact') . '</b>';
+    'Search genes and transcripts by species, dataset, genome location, name and/or keyword.
+     For keyword, enter any protein name of homologs, KEGG term/EC number, GO term, or InterPro term.
+     <strong>| ' . $url1 . ' | ' . $url2 . ' | ' . $url3 . '</strong>';
   $form->addFieldset(
       Set::fieldset()
       ->id('gene_search_fields')
